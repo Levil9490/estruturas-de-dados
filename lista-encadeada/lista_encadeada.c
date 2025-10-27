@@ -62,7 +62,7 @@ void remover(int pos) {
         //aqui vc deve percorrer a lista até a penultima posição e remover o ultimo!
         NO *lixo = NULL;
         NO *aux = inicio;
-        for(int i = 0; i < tam - 1; i++) {
+        for(int i = 0; i < pos - 1; i++) {
             aux = aux->prox;
         }
         lixo = aux->prox;
@@ -72,7 +72,7 @@ void remover(int pos) {
     } else if(pos > 0 && pos < tam - 1 && tam > 0) { //meio - aqui vc deve percorrer a lista até a posição desejada e remover o no!
         NO *lixo = NULL;
         NO *aux = inicio;
-        for(int i = 0; i < pos; i++) {
+        for(int i = 0; i < pos - 1; i++) {
             aux = aux->prox;
         }
         lixo = aux->prox;
