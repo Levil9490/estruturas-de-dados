@@ -60,8 +60,14 @@ void remover(int pos){
 
 
     }else if(pos == tam-1){ //fim
-        //aqui vc deve percorrer a lista até a penultima posição e remover o ultimo!    
-
+        //aqui vc deve percorrer a lista até a penultima posição e remover o ultimo!
+        NO *lixo = NULL;
+        for(int i = 0; i < tam - 1; i++){
+            lixo = novo->prox;
+        }
+        free(lixo);
+        novo->prox = NULL;
+        tam--;
     }else{ //meio - aqui vc deve percorrer a lista até a posição desejada e remover o no!
 
     }
