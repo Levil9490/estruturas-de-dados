@@ -11,7 +11,7 @@ typedef struct NO{
 NO * inicio = NULL;
 int tam = 0;
 
-void add(int valor, int pos){
+void add(int valor, int pos) {
 
     //passo 1: criar o NO novo!
     NO *novo = malloc(sizeof(NO));
@@ -19,70 +19,74 @@ void add(int valor, int pos){
     novo->prox = NULL;
 
     //passo 2: onde este NO novo irá ser  colocado na lista?
-    if(inicio == NULL){ //lista vazia
+    if(inicio == NULL) { //lista vazia
         inicio = novo;
         tam++;
-    }else{ //lista nao esta vazia - vamos imitar o insert do python!
+    } else { //lista nao esta vazia - vamos imitar o insert do python!
 
         if(pos == 0){ // add no inicio!
             novo->prox = inicio;
             inicio = novo;
             tam++;
 
-        }else if(pos == tam){ // add no fim! :D
+        } else if(pos == tam) { // add no fim! :D
             NO * aux = inicio;
             //while(aux->prox != NULL){ //outra opção!
-            for(int i=0; i<tam -1; i++){
+            for(int i = 0; i < tam - 1; i++) {
                 aux = aux->prox;
             }
             aux->prox = novo;
             tam++;
-        }else{ //entre 1 e tam -1 (depois do inicio, antes do fim - "meio")
+        } else { //entre 1 e tam - 1 (depois do inicio, antes do fim - "meio")
             
             NO * aux = inicio;
-            for(int i=0; i<pos -1; i++){
+            for(int i = 0; i < pos - 1; i++) {
                 aux = aux->prox;
             }
             novo->prox = aux->prox;
             aux->prox = novo;
             tam++;
+        }
     }
-
 }
 
-void remover(int pos){
-    if(pos == 0){ //remover do inicio
+void remover(int pos) {
+    if(pos == 0 && tam > 0) { //remover do inicio
 
         NO * lixo = inicio;
         inicio = inicio->prox;
         free(lixo);
         tam--;
 
-
-    }else if(pos == tam-1){ //fim
+    } else if(pos == tam - 1 && tam > 0) { //fim
         //aqui vc deve percorrer a lista até a penultima posição e remover o ultimo!
         NO *lixo = NULL;
-        for(int i = 0; i < tam - 1; i++){
-            lixo = novo->prox;
+        NO *aux = inicio;
+        for(int i = 0; i < pos - 1; i++) {
+            aux = aux->prox;
         }
+        lixo = aux->prox;
         free(lixo);
-        novo->prox = NULL;
+        aux->prox = NULL;
         tam--;
-    }else{ //meio - aqui vc deve percorrer a lista até a posição desejada e remover o no!
-
+    } else if(pos > 0 && pos < tam - 1 && tam > 0) { //meio - aqui vc deve percorrer a lista até a posição desejada e remover o no!
+        NO *lixo = NULL;
+        NO *aux = inicio;
+        for(int i = 0; i < pos - 1; i++) {
+            aux = aux->prox;
+        }
+        lixo = aux->prox;
+        aux->prox = lixo->prox;
+        free(lixo);
+        tam--;
     }
-
-
 }
 
-
-
-int main(){
-    ...
+int main() {
      add(20, 0);
      add(50, 3);
 
-return 0;
+    return 0;
 }
 
 
