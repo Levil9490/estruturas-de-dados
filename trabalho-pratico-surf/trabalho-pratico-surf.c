@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct NO{
     int codigo;
@@ -29,12 +29,6 @@ void add(int codigo, float preco, char *tipo, char *descricao){
     if(inicio == NULL){
         inicio = novo;
         fim = novo;
-    }else{
-        if(novo->preco < inicio->preco){
-            novo->prox = inicio;
-            inicio->ant = novo;
-            inicio = novo;
-        }
     }
 
     tam++;
@@ -45,22 +39,22 @@ void add(int codigo, float preco, char *tipo, char *descricao){
 } */
 
 void imprimir(){
-    NO * aux = inicio;
+    NO *aux = inicio;
     for(int i=0; i<tam; i++){
-        printf("Valor = %d\n", aux->valor);
+        printf("Código = %d\n", aux->codigo);
+        printf("Valor = %.2f\n", aux->preco);
+        printf("Tipo = %s\n", aux->tipo);
+        printf("Descrição = %s\n\n", aux->descricao);
         aux = aux->prox;
-    } 
+    }
 }
 
 int main(){
-    add(10, 0);
-    add(30, 1);
-    add(20, 2);
-    add(50, 2);
+    add(1, 10, "Parafina", "Descrição");
 
     //remover no inicio:
     //remover(2);
     imprimir();
 
-return 0;
+    return 0;
 }
