@@ -29,8 +29,29 @@ void add(int codigo, float preco, char *tipo, char *descricao){
     if(inicio == NULL){
         inicio = novo;
         fim = novo;
+    }/*else if(inicio != NULL){
+        if(novo->preco >= inicio->preco){
+            inicio->prox = novo;
+            novo->ant = inicio;
+            fim = novo;
+        }else{
+            inicio->ant = novo;
+            novo->prox = inicio;
+            inicio = novo;
+        }
+    }*/else{
+        NO *aux = inicio;
+        for(int i = 0; i < tam; i++){
+            if(novo->preco <= aux->preco){
+                novo->prox = aux;
+                novo->ant = aux->ant;
+            }else{
+                aux->prox = novo;
+                novo->ant = aux;
+            }
+            aux = aux->prox;
+        }
     }
-
     tam++;
 }
 
@@ -50,7 +71,9 @@ void imprimir(){
 }
 
 int main(){
-    add(1, 10, "Parafina", "Descrição");
+    add(1, 30, "Parafina", "Descrição");
+    add(2, 10, "Deck", "Descrição2");
+    add(3, 40, "Quilha", "Descrição3");
 
     //remover no inicio:
     //remover(2);
