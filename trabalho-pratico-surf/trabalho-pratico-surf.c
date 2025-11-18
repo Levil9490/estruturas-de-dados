@@ -60,14 +60,20 @@ void remover(int codigo){
         inicio = inicio->prox;
         lixo->prox = NULL;
         inicio->ant = NULL;
-        free(lixo);
     }else if(codigo == fim->codigo){
         lixo = fim;
         fim = fim->ant;
         fim->prox = NULL;
         lixo->ant = NULL;
-        free(lixo);
+    }else{
+        lixo = inicio;
+        while(lixo->codigo != codigo){
+            lixo = lixo->prox;
+        }
+        lixo->prox->ant = lixo->ant;
+        lixo->ant->prox = lixo->prox;
     }
+    free(lixo);
     tam--;
 }
 
@@ -90,7 +96,7 @@ int main(){
     add(2, 30, "Deck", "Descrição2");
     add(3, 40, "Quilha", "Descrição3");
 
-    remover(3);
+    remover(2);
 
     imprimir();
 
