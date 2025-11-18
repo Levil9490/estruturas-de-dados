@@ -61,6 +61,12 @@ void remover(int codigo){
         lixo->prox = NULL;
         inicio->ant = NULL;
         free(lixo);
+    }else if(codigo == fim->codigo){
+        lixo = fim;
+        fim = fim->ant;
+        fim->prox = NULL;
+        lixo->ant = NULL;
+        free(lixo);
     }
     tam--;
 }
@@ -84,7 +90,7 @@ int main(){
     add(2, 30, "Deck", "Descrição2");
     add(3, 40, "Quilha", "Descrição3");
 
-    remover(1);
+    remover(3);
 
     imprimir();
 
