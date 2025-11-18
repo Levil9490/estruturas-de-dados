@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+// #include <windows.h>
 
 typedef struct NO{
     int codigo;
@@ -53,9 +53,17 @@ void add(int codigo, float preco, char *tipo, char *descricao){
     tam++;
 }
 
-/* void remover(int pos){
-    
-} */
+void remover(int codigo){
+    NO *lixo;
+    if(codigo == inicio->codigo){
+        lixo = inicio;
+        inicio = inicio->prox;
+        lixo->prox = NULL;
+        inicio->ant = NULL;
+        free(lixo);
+    }
+    tam--;
+}
 
 void imprimir(){
     NO *aux = inicio;
@@ -69,15 +77,15 @@ void imprimir(){
 }
 
 int main(){
-    SetConsoleCP(CP_UTF8);
-    SetConsoleOutputCP(CP_UTF8);
+//    SetConsoleCP(CP_UTF8);
+//    SetConsoleOutputCP(CP_UTF8);
 
-    add(1, 30, "Parafina", "Descrição");
-    add(2, 10, "Deck", "Descrição2");
+    add(1, 10, "Parafina", "Descrição");
+    add(2, 30, "Deck", "Descrição2");
     add(3, 40, "Quilha", "Descrição3");
 
-    //remover no inicio:
-    //remover(2);
+    remover(1);
+
     imprimir();
 
     return 0;
