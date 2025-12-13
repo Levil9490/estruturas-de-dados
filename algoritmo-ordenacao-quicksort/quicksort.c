@@ -13,10 +13,27 @@ int particiona(int *v, int inicio, int fim){
     return inicio;
 }
 
+void quickSort(int *v, int inicio, int fim) {
+    if(inicio < fim) {
+        int pos = particiona(v, inicio, fim);
+        quickSort(v, inicio, pos - 1);
+        quickSort(v, pos, fim);
+    }
+}
+
+void imprimir(int *v, int tam) {
+    for(int i = 0; i <= tam; i++) {
+        printf("%d, ", v[i]);
+    }
+    printf("\n\n");
+}
+
 int main(){
     int vetor[] = {47, 35, 12, 49, 56, 25, 71, 83, 5, 3, 1, 70, 99, 10, 61};
 
-    printf("%d\n", particiona(vetor, vetor[0], vetor[14]));
+    imprimir(vetor, 14);
+    quickSort(vetor, 0, 14);
+    imprimir(vetor, 14);
 
     return 0;
 }
