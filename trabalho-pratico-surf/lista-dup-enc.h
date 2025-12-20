@@ -59,21 +59,20 @@ void imprimir_produtos(){
 }
 
 void remover_produto(int codigo){
-    NO *lixo = inicio;
-    while(lixo->prox != NULL){
-        if(lixo->codigo == codigo){
-            if(lixo == inicio){
-                inicio = inicio->prox;
-                lixo->prox->ant = NULL;
-            } else if(lixo == fim){
-                fim = fim->ant;
-                lixo->ant->prox = NULL;
-            }else{
-                lixo->ant->prox = lixo->prox;
-                lixo->prox->ant = lixo->ant;
-            }
-        }
-        lixo = lixo->prox;
+    NO *lixo;
+    if(codigo == inicio->codigo){
+        lixo = inicio;
+        inicio = inicio->prox;
+        inicio->ant = NULL;
+    }else if(codigo == fim->codigo){
+        lixo = fim;
+        fim = fim->ant;
+        fim->prox = NULL;
+    }else{
+        lixo = inicio;
+        while(lixo->codigo != codigo) lixo = lixo->prox;
+        lixo->prox->ant = lixo->ant;
+        lixo->ant->prox = lixo->prox;
     }
     free(lixo);
     tam--;
