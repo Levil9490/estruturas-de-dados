@@ -5,7 +5,9 @@
 int main(){
     adicionar_produto(10, 20.45, "Quilha", "...");
     adicionar_produto(20, 22.90, "Leash", "...");
-    adicionar_produto(30, 10.25, "Sla", "...");
+    adicionar_produto(30, 10.25, "Outro Leash", "...");
+    adicionar_produto(40, 100.99, "Prancha", "Nao sei quanto custa uma");
+    adicionar_produto(50, 15.69, "Outra quilha", "O que é quilha?");
     imprimir_produtos();
 
     return 0;

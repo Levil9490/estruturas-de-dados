@@ -48,3 +48,24 @@ void imprimir_produtos(){
         aux = aux->prox;
     }
 }
+
+void remover_produto(int codigo){
+    NO *lixo = inicio;
+    while(lixo->prox != NULL){
+        if(lixo->codigo == codigo){
+            if(lixo == inicio){
+                inicio = inicio->prox;
+                lixo->prox->ant = NULL;
+            } else if(lixo == fim){
+                fim = fim->ant;
+                lixo->ant->prox = NULL;
+            }else{
+                lixo->ant->prox = lixo->prox;
+                lixo->prox->ant = lixo->ant;
+            }
+        }
+        lixo = lixo->prox;
+    }
+    free(lixo);
+    tam--;
+}
