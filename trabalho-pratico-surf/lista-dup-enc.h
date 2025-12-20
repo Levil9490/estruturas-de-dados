@@ -23,15 +23,24 @@ void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
     if(inicio == NULL){
         inicio = produto;
         fim = produto;
-    } else {
-        if(produto->preco <= inicio->preco){
-            inicio->ant = produto;
+    }else{
+        if(produto->preco < inicio->preco){
             produto->prox = inicio;
+            inicio->ant = produto;
             inicio = produto;
-        } else if(produto->preco > inicio->preco){
-            inicio->prox = produto;
-            produto->ant = inicio;
-            fim = inicio->prox;
+        }else if(produto->preco > fim->preco){
+            fim->prox = produto;
+            produto->ant = fim;
+            fim = produto;
+        }else{
+            NO *aux = inicio;
+            while(aux->preco <= produto->preco){
+                aux = aux->prox;
+            }
+            produto->prox = aux;
+            produto->ant = aux->ant;
+            aux->ant->prox = produto;
+            aux->ant = produto;
         }
     }
     tam++;
