@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "produtos/produtos.h"
-#include "lista-enc/lista-enc.h"
+#include "caixa/caixa.h"
 
 int main(){
     adicionar_produto(10, 20.45, "Quilha", "...");
@@ -13,8 +13,8 @@ int main(){
     remover_produto(50);
     imprimir_produtos();
 
-    LISTA_ENC_PRODUT *lista = construir_lista();
-    add_na_lista_enc(lista, 1234);
+    PRODUTOS *lista = nova_caixa();
+    add_produto_na_caixa(lista, 1234);
 
     return 0;
 }

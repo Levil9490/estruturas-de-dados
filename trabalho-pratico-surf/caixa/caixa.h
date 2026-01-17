@@ -12,7 +12,7 @@ typedef struct PRODUTOS{
     int tam;
 }PRODUTOS;
 
-void add_na_lista_enc(PRODUTOS *lista, int codigo);
-PRODUTOS *construir_lista();
+void add_produto_na_caixa(PRODUTOS *lista, int codigo);
+PRODUTOS *nova_caixa();
 
 #endif

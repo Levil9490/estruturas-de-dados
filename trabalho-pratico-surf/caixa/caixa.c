@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "caixa.h"
 
-void add_na_lista_enc(PRODUTOS *lista, int codigo){
+void add_produto_na_caixa(PRODUTOS *lista, int codigo){
     CAIXA *produto = malloc(sizeof(CAIXA));
     produto->codigo = codigo;
     produto->prox = NULL;
@@ -16,7 +16,7 @@ void add_na_lista_enc(PRODUTOS *lista, int codigo){
     lista->tam++;
 }
 
-PRODUTOS *construir_lista(){
+PRODUTOS *nova_caixa(){
     PRODUTOS *novalista = malloc(sizeof(PRODUTOS));
     novalista->inicio = NULL;
     novalista->fim = NULL;
