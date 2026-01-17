@@ -1,3 +1,6 @@
+#ifndef LISTA_DUP_ENC_H
+#define LISTA_DUP_ENC_H
+
 typedef struct NO{
     int codigo;
     float preco;
@@ -7,73 +10,12 @@ typedef struct NO{
     struct NO *ant;
 }NO;
 
-NO *inicio = NULL;
-NO *fim = NULL;
-int tam = 0;
+extern NO *inicio;
+extern NO *fim;
+extern int tam;
 
-void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
-    NO *produto = malloc(sizeof(NO));
-    produto->codigo = codigo;
-    produto->preco = preco;
-    produto->tipo = tipo;
-    produto->descricao = descricao;
-    produto->prox = NULL;
-    produto->ant = NULL;
+void adicionar_produto(int codigo, float preco, char *tipo, char *descricao);
+void imprimir_produtos();
+void remover_produto(int codigo);
 
-    if(inicio == NULL){
-        inicio = produto;
-        fim = produto;
-    }else{
-        if(produto->preco < inicio->preco){
-            produto->prox = inicio;
-            inicio->ant = produto;
-            inicio = produto;
-        }else if(produto->preco > fim->preco){
-            fim->prox = produto;
-            produto->ant = fim;
-            fim = produto;
-        }else{
-            NO *aux = inicio;
-            while(aux->preco <= produto->preco){
-                aux = aux->prox;
-            }
-            produto->prox = aux;
-            produto->ant = aux->ant;
-            aux->ant->prox = produto;
-            aux->ant = produto;
-        }
-    }
-    tam++;
-}
-
-void imprimir_produtos(){
-    NO *aux = inicio;
-    for(int i = 0; i < tam; i++){
-        printf("Codigo: %d\n", aux->codigo);
-        printf("Preco: %.2f\n", aux->preco);
-        printf("Tipo: %s\n", aux->tipo);
-        printf("Descricao: %s\n", aux->descricao);
-        printf("\n");
-        aux = aux->prox;
-    }
-}
-
-void remover_produto(int codigo){
-    NO *lixo;
-    if(codigo == inicio->codigo){
-        lixo = inicio;
-        inicio = inicio->prox;
-        inicio->ant = NULL;
-    }else if(codigo == fim->codigo){
-        lixo = fim;
-        fim = fim->ant;
-        fim->prox = NULL;
-    }else{
-        lixo = inicio;
-        while(lixo->codigo != codigo) lixo = lixo->prox;
-        lixo->prox->ant = lixo->ant;
-        lixo->ant->prox = lixo->prox;
-    }
-    free(lixo);
-    tam--;
-}
+#endif
