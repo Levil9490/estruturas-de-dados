@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "caixa.h"
 
@@ -21,5 +22,6 @@ PRODUTOS *nova_caixa(){
     novalista->inicio = NULL;
     novalista->fim = NULL;
     novalista->tam = 0;
+    printf("Uma nova caixa foi adicionada.\n");
     return novalista;
 }
