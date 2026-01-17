@@ -1,3 +1,6 @@
+#ifndef LISTA_ENC_H
+#define LISTA_ENC_H
+
 typedef struct NO_DA_LISTA_ENC{
     int codigo;
     struct NO_DA_LISTA_ENC *prox;
@@ -9,25 +12,7 @@ typedef struct LISTA_ENC_PRODUT{
     int tam;
 }LISTA_ENC_PRODUT;
 
-void add_na_lista_enc(LISTA_ENC_PRODUT *lista, int codigo){
-    NO_DA_LISTA_ENC *produto = malloc(sizeof(NO_DA_LISTA_ENC));
-    produto->codigo;
-    produto->prox = NULL;
+void add_na_lista_enc(LISTA_ENC_PRODUT *lista, int codigo);
+LISTA_ENC_PRODUT *construir_lista();
 
-    if(lista->inicio == NULL){
-        lista->inicio = produto;
-        lista->fim = produto;
-    }else{
-        lista->fim = produto;
-        lista->fim = produto;
-    }
-    tam++;
-}
-
-LISTA_ENC_PRODUT *construir_lista(){
-    LISTA_ENC_PRODUT *novalista = malloc(sizeof(LISTA_ENC_PRODUT));
-    novalista->inicio = NULL;
-    novalista->fim = NULL;
-    tam = 0;
-    return novalista;
-}
+#endif
