@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista-dup-enc.h"
+#include "produtos.h"
 
-NO *inicio = NULL;
-NO *fim = NULL;
+PRODUTO *inicio = NULL;
+PRODUTO *fim = NULL;
 int tam = 0;
 
 void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
-    NO *produto = malloc(sizeof(NO));
+    PRODUTO *produto = malloc(sizeof(PRODUTO));
     produto->codigo = codigo;
     produto->preco = preco;
     produto->tipo = tipo;
@@ -28,7 +28,7 @@ void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
             produto->ant = fim;
             fim = produto;
         }else{
-            NO *aux = inicio;
+            PRODUTO *aux = inicio;
             while(aux->preco <= produto->preco){
                 aux = aux->prox;
             }
@@ -42,7 +42,7 @@ void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
 }
 
 void imprimir_produtos(){
-    NO *aux = inicio;
+    PRODUTO *aux = inicio;
     for(int i = 0; i < tam; i++){
         printf("Codigo: %d\n", aux->codigo);
         printf("Preco: %.2f\n", aux->preco);
@@ -54,7 +54,7 @@ void imprimir_produtos(){
 }
 
 void remover_produto(int codigo){
-    NO *lixo;
+    PRODUTO *lixo;
     if(codigo == inicio->codigo){
         lixo = inicio;
         inicio = inicio->prox;

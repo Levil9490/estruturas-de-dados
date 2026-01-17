@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include "lista-enc.h"
+#include "caixa.h"
 
-void add_na_lista_enc(LISTA_ENC_PRODUT *lista, int codigo){
-    NO_DA_LISTA_ENC *produto = malloc(sizeof(NO_DA_LISTA_ENC));
+void add_produto_na_caixa(PRODUTOS *lista, int codigo){
+    CAIXA *produto = malloc(sizeof(CAIXA));
     produto->codigo = codigo;
     produto->prox = NULL;
 
@@ -16,8 +16,8 @@ void add_na_lista_enc(LISTA_ENC_PRODUT *lista, int codigo){
     lista->tam++;
 }
 
-LISTA_ENC_PRODUT *construir_lista(){
-    LISTA_ENC_PRODUT *novalista = malloc(sizeof(LISTA_ENC_PRODUT));
+PRODUTOS *nova_caixa(){
+    PRODUTOS *novalista = malloc(sizeof(PRODUTOS));
     novalista->inicio = NULL;
     novalista->fim = NULL;
     novalista->tam = 0;

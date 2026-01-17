@@ -1,17 +1,17 @@
-#ifndef LISTA_DUP_ENC_H
-#define LISTA_DUP_ENC_H
+#ifndef PRODUTOS_H
+#define PRODUTOS_H
 
-typedef struct NO{
+typedef struct PRODUTO{
     int codigo;
     float preco;
     char *tipo;
     char *descricao;
-    struct NO *prox;
-    struct NO *ant;
-}NO;
+    struct PRODUTO *prox;
+    struct PRODUTO *ant;
+}PRODUTO;
 
-extern NO *inicio;
-extern NO *fim;
+extern PRODUTO *inicio;
+extern PRODUTO *fim;
 extern int tam;
 
 void adicionar_produto(int codigo, float preco, char *tipo, char *descricao);
