@@ -2,6 +2,7 @@
 #define PRODUTOS_H
 
 #include "../pilhas/pilha.h"
+#include "../fila/fila.h"
 
 typedef struct PRODUTO{
     int codigo;
@@ -18,6 +19,8 @@ extern int tam;
 
 void adicionar_produto(int codigo, float preco, char *tipo, char *descricao);
 void imprimir_produtos();
-void remover_produto(int codigo);
+void imprimir_produtos_por_categoria(char *categoria);
+void imprimir_produtos_por_preco(float min, float max);
+void criar_pedido(int codigo, char *nome_cliente, int cpf, int cep, char *rua, int numero, char *complemento);
 
 #endif
