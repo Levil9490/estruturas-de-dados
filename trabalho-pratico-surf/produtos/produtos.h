@@ -1,6 +1,8 @@
 #ifndef PRODUTOS_H
 #define PRODUTOS_H
 
+#include "../pilhas/pilhas.h"
+
 typedef struct PRODUTO{
     int codigo;
     float preco;
