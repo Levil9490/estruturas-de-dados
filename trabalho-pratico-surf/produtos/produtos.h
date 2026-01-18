@@ -1,7 +1,7 @@
 #ifndef PRODUTOS_H
 #define PRODUTOS_H
 
-#include "../pilhas/pilhas.h"
+#include "../pilhas/pilha.h"
 
 typedef struct PRODUTO{
     int codigo;
