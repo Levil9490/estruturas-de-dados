@@ -38,6 +38,7 @@ void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
             aux->ant = produto;
         }
     }
+    alocar_no_estoque(tipo, codigo);
     tam++;
 }
 

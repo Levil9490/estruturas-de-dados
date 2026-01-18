@@ -1,18 +1,19 @@
 #ifndef PILHA_H
 #define PILHA_H
 
-#include "../lista-enc/lista-enc.h"
+#include "../tipos/tipos.h"
+#include "../caixa/caixa.h"
 
 typedef struct PILHA {
-    LISTA_ENC_PRODUT *topo;
+    TipoProduto tipo;
+    CAIXA *topo;
     int tam;
 } PILHA;
 
-extern PILHA *parafina;
-extern PILHA *leash;
-extern PILHA *quilha;
-extern PILHA *deck;
-
-void adicionar_caixa(PILHA *pilha);
+CAIXA *adicionar_caixa(PILHA *pilha);
+void alocar_no_estoque(char *tipo_produto, int codigo);
+void add_produto_na_pilha(PILHA *pilha, int codigo);
+PILHA *criar_pilha(char *tipo);
+TipoProduto retorna_tipo(char *tipo);
 
 #endif
