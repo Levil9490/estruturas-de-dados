@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "pilha.h"
 
-PILHA *pilha_parafina = criar_pilha("parafina");
-PILHA *pilha_leash    = criar_pilha("leash");
-PILHA *pilha_quilha   = criar_pilha("quilha");
-PILHA *pilha_deck     = criar_pilha("deck");
-PILHA *estoque[]      = {
+static PILHA *pilha_parafina = criar_pilha("parafina");
+static PILHA *pilha_leash    = criar_pilha("leash");
+static PILHA *pilha_quilha   = criar_pilha("quilha");
+static PILHA *pilha_deck     = criar_pilha("deck");
+static PILHA *estoque[]      = {
     pilha_parafina,
     pilha_leash,
     pilha_quilha,
