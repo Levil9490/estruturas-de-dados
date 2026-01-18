@@ -85,22 +85,25 @@ void imprimir_produtos_por_preco(float min, float max) {
     }
 }
 
-void remover_produto(int codigo){
-    PRODUTO *lixo;
+void criar_pedido(int codigo, char *nome_cliente, int cpf, int cep, char *rua, int numero, char *complemento){
+    PRODUTO *produto = NULL;
     if(codigo == inicio->codigo){
-        lixo = inicio;
+        produto = inicio;
         inicio = inicio->prox;
         inicio->ant = NULL;
     }else if(codigo == fim->codigo){
-        lixo = fim;
+        produto = fim;
         fim = fim->ant;
         fim->prox = NULL;
     }else{
-        lixo = inicio;
-        while(lixo->codigo != codigo) lixo = lixo->prox;
-        lixo->prox->ant = lixo->ant;
-        lixo->ant->prox = lixo->prox;
+        produto = inicio;
+        while(produto->codigo != codigo) produto = produto->prox;
+        produto->prox->ant = produto->ant;
+        produto->ant->prox = produto->prox;
     }
-    free(lixo);
+
+    // Chamar função pra remover do estoque aqui
+
+    adicionar_pedido(produto, nome_cliente, cpf, cep, rua, numero, complemento);
     tam--;
 }
