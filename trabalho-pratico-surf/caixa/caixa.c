@@ -2,26 +2,35 @@
 #include <stdlib.h>
 #include "caixa.h"
 
-void add_produto_na_caixa(PRODUTOS *lista, int codigo){
-    CAIXA *produto = malloc(sizeof(CAIXA));
+void add_produto_na_caixa(CAIXA *caixa, int codigo){
+    PRODUTOS *produto = malloc(sizeof(PRODUTOS));
+    
+    if(!produto) return NULL;
+
     produto->codigo = codigo;
     produto->prox = NULL;
 
-    if(lista->inicio == NULL){
-        lista->inicio = produto;
-        lista->fim = produto;
+    if(caixa->inicio == NULL){
+        caixa->inicio = produto;
+        caixa->fim = produto;
     }else{
-        lista->fim->prox = produto;
-        lista->fim = produto;
+        caixa->fim->prox = produto;
+        caixa->fim = produto;
     }
-    lista->tam++;
+    caixa->tam++;
 }
 
-PRODUTOS *nova_caixa(){
-    PRODUTOS *novalista = malloc(sizeof(PRODUTOS));
-    novalista->inicio = NULL;
-    novalista->fim = NULL;
+CAIXA *nova_caixa(TipoProduto tipo){
+    CAIXA *novalista = malloc(sizeof(PRODUTOS));
+
+    if(!novalista) return NULL;
+
+    novalista->produto_inicio = NULL;
+    novalista->produto_fim = NULL;
+    novalista->prox = NULL;
     novalista->tam = 0;
+    novalista->tam_max = CONFIGS[tipo].capacidade;
+
     printf("Uma nova caixa foi adicionada.\n");
     return novalista;
 }
