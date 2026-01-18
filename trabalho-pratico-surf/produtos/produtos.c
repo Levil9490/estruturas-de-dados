@@ -43,6 +43,7 @@ void adicionar_produto(int codigo, float preco, char *tipo, char *descricao){
 }
 
 void imprimir_produtos(){
+    printf("Visualizar todos os produtos:\n\n");
     PRODUTO *aux = inicio;
     for(int i = 0; i < tam; i++){
         printf("Codigo: %d\n", aux->codigo);
@@ -50,6 +51,36 @@ void imprimir_produtos(){
         printf("Tipo: %s\n", aux->tipo);
         printf("Descricao: %s\n", aux->descricao);
         printf("\n");
+        aux = aux->prox;
+    }
+}
+
+void imprimir_produtos_por_categoria(char *categoria) {
+    printf("Visualizar produtos da categoria %s\n\n", categoria);
+    produto *aux = inicio;
+    for(int i = 0; i < tam; i++){
+        if(strcmp(aux->tipo, categoria) == 0) {
+            printf("codigo: %d\n", aux->codigo);
+            printf("preco: %.2f\n", aux->preco);
+            printf("tipo: %s\n", aux->tipo);
+            printf("descricao: %s\n", aux->descricao);
+            printf("\n");
+        }
+        aux = aux->prox;
+    }
+}
+
+void imprimir_produtos_por_preco(float min, float max) {
+    printf("Visualizar produtos no intervalo %.2f-%.2f\n\n", min, max)
+    produto *aux = inicio;
+    for(int i = 0; i < tam; i++){
+        if(aux->preco >= min && aux->preco <= max) {
+            printf("codigo: %d\n", aux->codigo);
+            printf("preco: %.2f\n", aux->preco);
+            printf("tipo: %s\n", aux->tipo);
+            printf("descricao: %s\n", aux->descricao);
+            printf("\n");
+        }
         aux = aux->prox;
     }
 }
