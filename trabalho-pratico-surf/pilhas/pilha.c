@@ -33,6 +33,18 @@ void alocar_no_estoque(char *tipo_produto, int codigo) {
     for(int i = 0; i < 4; i++) {
         if(estoque[i]->tipo == tipo) {
             add_produto_na_pilha(estoque[i], codigo);
+            break;
+        }
+    }
+}
+
+void rem_do_estoque(char *tipo_produto, int codigo){
+    TipoProduto tipo = retorna_tipo(tipo_produto);
+
+    for(int i = 0; i < 4; i++) {
+        if(estoque[i]->tipo == tipo) {
+            rem_produto_da_pilha(estoque[i], i);
+            break;
         }
     }
 }
@@ -44,6 +56,10 @@ void add_produto_na_pilha(PILHA *pilha, int codigo) {
         CAIXA *caixa = adicionar_caixa(pilha);
         add_produto_na_caixa(caixa, codigo);
     }
+}
+
+void rem_produto_da_pilha(PILHA *pilha, int codigo){
+    if()
 }
 
 PILHA *criar_pilha(char *tipo) {
