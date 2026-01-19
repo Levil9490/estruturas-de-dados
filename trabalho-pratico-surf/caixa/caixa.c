@@ -4,24 +4,22 @@
 
 void add_produto_na_caixa(CAIXA *caixa, int codigo){
     PRODUTOS *produto = malloc(sizeof(PRODUTOS));
-    
-    if(!produto) return NULL;
 
     produto->codigo = codigo;
     produto->prox = NULL;
 
-    if(caixa->inicio == NULL){
-        caixa->inicio = produto;
-        caixa->fim = produto;
+    if(caixa->produto_inicio == NULL){
+        caixa->produto_inicio = produto;
+        caixa->produto_fim = produto;
     }else{
-        caixa->fim->prox = produto;
-        caixa->fim = produto;
+        caixa->produto_fim->prox = produto;
+        caixa->produto_fim = produto;
     }
     caixa->tam++;
 }
 
 CAIXA *nova_caixa(TipoProduto tipo){
-    CAIXA *novalista = malloc(sizeof(PRODUTOS));
+    CAIXA *novalista = malloc(sizeof(CAIXA));
 
     if(!novalista) return NULL;
 

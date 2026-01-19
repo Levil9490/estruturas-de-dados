@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "produtos.h"
 
 PRODUTO *inicio = NULL;
@@ -57,7 +58,7 @@ void imprimir_produtos(){
 
 void imprimir_produtos_por_categoria(char *categoria) {
     printf("Visualizar produtos da categoria %s\n\n", categoria);
-    produto *aux = inicio;
+    PRODUTO *aux = inicio;
     for(int i = 0; i < tam; i++){
         if(strcmp(aux->tipo, categoria) == 0) {
             printf("codigo: %d\n", aux->codigo);
@@ -71,8 +72,8 @@ void imprimir_produtos_por_categoria(char *categoria) {
 }
 
 void imprimir_produtos_por_preco(float min, float max) {
-    printf("Visualizar produtos no intervalo %.2f-%.2f\n\n", min, max)
-    produto *aux = inicio;
+    printf("Visualizar produtos no intervalo %.2f-%.2f\n\n", min, max);
+    PRODUTO *aux = inicio;
     for(int i = 0; i < tam; i++){
         if(aux->preco >= min && aux->preco <= max) {
             printf("codigo: %d\n", aux->codigo);
@@ -86,24 +87,27 @@ void imprimir_produtos_por_preco(float min, float max) {
 }
 
 void criar_pedido(int codigo, char *nome_cliente, int cpf, int cep, char *rua, int numero, char *complemento){
-    PRODUTO *produto = NULL;
-    if(codigo == inicio->codigo){
-        produto = inicio;
-        inicio = inicio->prox;
-        inicio->ant = NULL;
-    }else if(codigo == fim->codigo){
-        produto = fim;
-        fim = fim->ant;
-        fim->prox = NULL;
-    }else{
-        produto = inicio;
-        while(produto->codigo != codigo) produto = produto->prox;
-        produto->prox->ant = produto->ant;
-        produto->ant->prox = produto->prox;
+    if(inicio == NULL && fim == NULL) {
+        printf("A lista de produtos está vazia.");
+    } else {
+        PRODUTO *produto = NULL;
+        if(codigo == inicio->codigo){
+            produto = inicio;
+            inicio = inicio->prox;
+            inicio->ant = NULL;
+        }else if(codigo == fim->codigo){
+            produto = fim;
+            fim = fim->ant;
+            fim->prox = NULL;
+        }else{
+            produto = inicio;
+            while(produto->codigo != codigo) produto = produto->prox;
+            produto->prox->ant = produto->ant;
+            produto->ant->prox = produto->prox;
+        }
+        
+        remover_do_estoque(produto->tipo, codigo);
+        adicionar_pedido(produto, nome_cliente, cpf, cep, rua, numero, complemento);
+        tam--;
     }
-
-    // Chamar função pra remover do estoque aqui
-
-    adicionar_pedido(produto, nome_cliente, cpf, cep, rua, numero, complemento);
-    tam--;
 }
