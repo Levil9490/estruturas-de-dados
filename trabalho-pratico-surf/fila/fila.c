@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../produtos/produtos.h"
 #include "fila.h"
 
-FILA_ENTREGA *fila = criar_fila();
+FILA_ENTREGA *fila = NULL;
 
 void adicionar_pedido(PRODUTO *produto, char *nome_cliente, int cpf, int cep, char *rua, int numero, char *complemento) {
+    if (fila == NULL) {
+        fila = criar_fila();
+        if (fila == NULL) return;
+    }
     PEDIDO *novo_pedido = malloc(sizeof(PEDIDO));
     novo_pedido->produto = produto;
     novo_pedido->nome_cliente = nome_cliente;
@@ -16,29 +21,34 @@ void adicionar_pedido(PRODUTO *produto, char *nome_cliente, int cpf, int cep, ch
     novo_pedido->prox = NULL;
 
     if(fila->primeiro_pedido == NULL && fila->ultimo_pedido == NULL) {
-        fila->primeiro_pedido == novo_pedido;
-        fila->ultimo_pedido == novo_pedido;
+        fila->primeiro_pedido = novo_pedido;
+        fila->ultimo_pedido = novo_pedido;
     } else {
         fila->ultimo_pedido->prox = novo_pedido;
         fila->ultimo_pedido = novo_pedido;
     }
 }
 
-void concluir_venda() {
+void concluir_entrega() {
     if(fila->primeiro_pedido == NULL && fila->ultimo_pedido == NULL) {
         printf("Fila de entrega vazia.\n");
     }else{
+        PEDIDO *aux = NULL;
         if(fila->primeiro_pedido->prox != NULL) {
-            PEDIDO *aux = fila->primeiro_pedido;
+            aux = fila->primeiro_pedido;
             fila->primeiro_pedido = fila->primeiro_pedido->prox;
-            free(aux->produto);
-            free(aux);
-            printf("Entrega do primeiro pedido da fila realizada!\n");
-        }else{
-            free(fila->primeiro_pedido->produto);
-            free(fila->primeiro_pedido);
-            printf("Entrega realizada com sucesso, a fila agora está vazia.\n");
+        } else {
+            aux = fila->primeiro_pedido;
+            fila->primeiro_pedido = NULL;
+            fila->ultimo_pedido = NULL;
         }
+
+        printf("Pedido saindo para entrega...\n");
+        printf("Produto: %d - %s\n", aux->produto->codigo, aux->produto->descricao);
+        printf("Cliente: %s, CPF: %d\n", aux->nome_cliente, aux->cpf_cliente);
+        printf("Endereço: %s %d, %d\n\n", aux->rua, aux->numero, aux->cep_cliente);
+        free(aux->produto);
+        free(aux);
     }
 }
 

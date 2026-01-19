@@ -1,7 +1,10 @@
 #ifndef FILA_H
 #define FILA_H
 
-#include "../produtos/produto.h"
+#include <stddef.h>
+
+/* forward declaration to avoid circular include */
+typedef struct PRODUTO PRODUTO;
 
 typedef struct PEDIDO {
     PRODUTO *produto;

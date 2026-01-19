@@ -5,13 +5,12 @@
 
 typedef struct PRODUTOS {
     int codigo;
-    int tam_max;
     struct PRODUTOS *prox;
 } PRODUTOS;
 
 typedef struct CAIXA {
-    struct PRODUTO *produto_inicio;
-    struct PRODUTO *produto_fim;
+    struct PRODUTOS *produto_inicio;
+    struct PRODUTOS *produto_fim;
     struct CAIXA *prox;
     int tam;
     int tam_max;

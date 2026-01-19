@@ -4,28 +4,30 @@
 #include "caixa/caixa.h"
 
 int main(){
-/*    adicionar_produto(10, 20.45, "Quilha", "...");
-    adicionar_produto(20, 22.90, "Leash", "...");
-    adicionar_produto(30, 10.25, "Outro Leash", "...");
-    adicionar_produto(40, 100.99, "Prancha", "Nao sei quanto custa uma");
-    adicionar_produto(50, 15.69, "Outra quilha", "O que é quilha?");
-    remover_produto(20);
-    remover_produto(50);
-    imprimir_produtos();
+    // Para simulação
+    const char *tipos[4] = {"parafina", "leash", "quilha", "deck"};
 
-    PRODUTOS *lista = nova_caixa();
-    add_produto_na_caixa(lista, 1234);
-*/
-
-    adicionar_produto(10, 20.45, "Quilha", "...");
-
-    PRODUTOS *lista = nova_caixa();
-
-    if(lista->inicio == NULL || lista->tam > 2){
-        add_produto_na_caixa(lista, 1234);
-    } else {
-        add_produto_na_caixa(lista, 1234);
+    // Adicionar 100 produtos
+    for (int i = 1; i <= 100; i++) {
+        const char *tipo = tipos[(i - 1) % 4];
+        float preco = 10.0f + (float)i;
+        adicionar_produto(i, preco, (char *)tipo, "Descricao do produto");
     }
 
+    imprimir_produtos_por_preco(10.0f, 120.0f);
+    imprimir_produtos_por_categoria("deck");
+
+    // Compra de 20 produtos
+    for (int codigo = 1; codigo <= 20; codigo++) {
+        char nome[32];
+        snprintf(nome, sizeof(nome), "Cliente%d", codigo);
+        criar_pedido(codigo, nome, 100000000 + codigo, 20000000 + codigo, "Rua Exemplo", 100 + codigo, "Sem");
+    }
+
+    // Entrega de 10 produtos vendidos
+    for (int i = 0; i < 10; i++) {
+        concluir_entrega();
+    }
+    
     return 0;
 }

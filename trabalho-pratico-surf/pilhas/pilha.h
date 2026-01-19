@@ -12,7 +12,9 @@ typedef struct PILHA {
 
 CAIXA *adicionar_caixa(PILHA *pilha);
 void alocar_no_estoque(char *tipo_produto, int codigo);
+void remover_do_estoque(char *tipo_produto, int codigo);
 void add_produto_na_pilha(PILHA *pilha, int codigo);
+void remover_produto_da_pilha(PILHA *pilha, int codigo);
 PILHA *criar_pilha(char *tipo);
 TipoProduto retorna_tipo(char *tipo);
 
